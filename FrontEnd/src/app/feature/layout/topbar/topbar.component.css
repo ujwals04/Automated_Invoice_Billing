@@ -1,0 +1,265 @@
+.topbar {
+    background-color: rgb(var(--surface));
+    border-bottom: 1px solid rgb(var(--border));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .topbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 1.5rem;
+    gap: 1rem;
+  }
+  
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .menu-button {
+    color: rgb(var(--text-primary));
+    
+    &:hover {
+      background-color: rgb(var(--background));
+    }
+  }
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(var(--text-primary));
+    margin: 0;
+  }
+  
+  .topbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .search-container {
+    width: 100%;
+    max-width: 400px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  .search-field {
+    width: 100%;
+    padding: 4px;
+    ::ng-deep .mat-form-field-outline {
+        border-radius: 8px;
+        border-color: rgba(0, 0, 0, 0.15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+    
+      /* Thicker and colored border when focused */
+      ::ng-deep.mat-focused .mat-form-field-outline {
+        border-color: #3f51b5; /* Indigo-ish */
+        box-shadow: 0 4px 12px rgba(63, 81, 181, 0.4);
+      }
+    
+      ::ng-deep .mat-form-field-infix {
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+      }
+  }
+  
+  .search-icon {
+    color: rgb(var(--secondary-color));
+    margin-right: 0.5rem;
+  }
+  
+  .search-input {
+    font-size: 0.875rem;
+    color: rgb(var(--text-primary));
+    
+    &::placeholder {
+      color: rgb(var(--secondary-color));
+    }
+  }
+  
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  .notification-button {
+    color: rgb(var(--text-primary));
+    position: relative;
+    
+    &:hover {
+      background-color: rgb(var(--background));
+    }
+  }
+  
+  .notification-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: white;
+    
+    .mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      color: black;
+    }
+  }
+
+  .profile-button {
+    padding: 0;
+    border-radius: 50%;
+    width: 54px;    /* Ensure enough width */
+    height: 54px;   /* Ensure enough height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  
+  .profile-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #e0f7fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;   /* Important: allow icon to fully show */
+  }
+  
+  .profile-avatar mat-icon {
+    /* font-size: 80px; */
+    color: #00796b;
+    line-height: 1;   /* Prevent extra spacing */
+  }
+  
+  
+
+  ::ng-deep .profile-menu {
+    .mat-menu-panel {
+      min-width: 280px;
+      max-width: 320px;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgb(var(--border));
+    }
+  }
+  
+  .profile-header {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(var(--border));
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .profile-name {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: rgb(var(--text-primary));
+  }
+  
+  .profile-email {
+    font-size: 0.75rem;
+    color: rgb(var(--secondary-color));
+  }
+  
+  ::ng-deep .profile-menu .mat-menu-item {
+    height: 48px;
+    line-height: 48px;
+    font-size: 0.875rem;
+    
+    .mat-icon {
+      margin-right: 0.75rem;
+      color: rgb(var(--secondary-color));
+      font-size: 1.125rem;
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+    
+    &:hover {
+      background-color: rgb(var(--background));
+    }
+    
+    &.logout-item {
+      color: #ef4444;
+      
+      .mat-icon {
+        color: #ef4444;
+      }
+      
+      &:hover {
+        background-color: rgba(239, 68, 68, 0.05);
+      }
+    }
+  }
+  
+
+  @media (max-width: 768px) {
+    .topbar-content {
+      padding: 0 1rem;
+      gap: 0.5rem;
+    }
+    
+    .topbar-center {
+      max-width: 250px;
+    }
+    
+    .search-container {
+      max-width: 200px;
+    }
+    
+    .page-title {
+      font-size: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .topbar-center {
+      display: none;
+    }
+    
+    .topbar-content {
+      justify-content: space-between;
+    }
+  }
+  

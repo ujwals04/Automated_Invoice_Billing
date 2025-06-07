@@ -1,0 +1,151 @@
+.hover-pop {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .hover-pop:hover {
+    transform: scale(1.1);
+  }
+
+  /* .btn-custom {
+    width: 120px;
+    height: 40px; 
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  } */
+  
+  .footer {
+    background-color: #16423c;
+    color: #ffffff;
+    padding: 30px 40px; /* Equal top and bottom padding */
+    font-family: Arial, sans-serif;
+    max-height: 80px; /* Enough space for one line and padding */
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+    position: relative;
+  }
+  
+  .footer:hover {
+    max-height: 650px; /* Expanded height */
+    padding: 30px 40px; /* Keep same padding on hover */
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .footer .copyright {
+    font-size: 16px;
+    color: #d9f2ee;
+    line-height: 1.6;
+  }
+  
+  
+  /* Footer Grid Section (hidden until hover) */
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 0.5s ease;
+    margin-top: 20px; /* Spacing between collapsed content and grid */
+  }
+  
+  .footer:hover .footer-grid {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease, visibility 0s 0s;
+  }
+  
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .logo {
+    max-width: 150px;
+    height: 50px;
+  }
+  
+  .tagline {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d9f2ee;
+  }
+  
+  .subscribe {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .social a img {
+    width: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+    transition: opacity 0.3s;
+  }
+  
+  .social a img:hover {
+    opacity: 0.7;
+  }
+  
+  .middle-column h4,
+  .right-column h4 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #ffffff;
+  }
+  
+  .link-card {
+    background-color: #1f5a52;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .link-card a {
+    display: flex;
+    align-items: center;
+    padding: 6px 25px;
+    font-size: 18px;
+    color: #ffffff;
+    text-decoration: none;
+    width: 100%;
+  }
+  
+  .link-card .icon {
+    margin-right: 15px;
+    font-size: 22px;
+  }
+  
+  .link-card:hover {
+    background-color: #217568;
+    transform: translateX(5px);
+  }
+  
+  .right-column p {
+    font-size: 13px;
+    color: #d9f2ee;
+    line-height: 1.6;
+  }
+  
+html{
+  scroll-behavior: smooth;
+}  
+
+.hover-pop {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-pop:hover {
+  transform: scale(0.95);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); */
+}
+
+

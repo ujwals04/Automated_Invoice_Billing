@@ -1,0 +1,64 @@
+<mat-toolbar class="topbar" >
+    <div class="topbar-content">
+      <!-- Left section -->
+      <div class="topbar-left">
+        <button 
+          *ngIf="showMenuButton"
+          mat-icon-button 
+          class="menu-button"
+          (click)="onMenuToggle()"
+          aria-label="Toggle menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        
+        <!-- <div class="breadcrumb">
+          <span class="page-title">Dashboard</span>
+        </div> -->
+      </div>
+  
+      <!-- Center section - Search -->
+      <!-- <div class="topbar-center">
+        <div class="search-container">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-icon matPrefix class="search-icon">search</mat-icon>
+            <input 
+              matInput 
+              placeholder="Search..." 
+              [(ngModel)]="searchQuery"
+              (keyup.enter)="onSearch()"
+              class="search-input">
+          </mat-form-field>
+        </div> -->
+      <!-- </div> -->
+  
+      <!-- Right section -->
+      <div class="topbar-right">
+        <!-- Notifications -->
+        <button 
+          mat-icon-button 
+          class="notification-button"
+          (click)="onNotificationsClick()"
+          matBadge="3" 
+          matBadgeColor="warn"
+          matBadgeSize="small"
+          aria-label="Notifications">
+          <div class="notification-avatar">
+            <mat-icon>notifications</mat-icon>
+          </div>
+        </button>
+  
+        <!-- Profile menu -->
+        <div class="profile-section">
+          <button 
+            mat-icon-button 
+            class="profile-button"
+            aria-label="Profile menu">
+            <div class="profile-avatar">
+              <mat-icon>account_circle</mat-icon>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar>
+  

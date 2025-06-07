@@ -1,0 +1,45 @@
+<div class="sidebar-container">
+  <!-- Logo section -->
+  <div class="logo-section">
+    <div class="logo">
+      <div class="w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-primary-dark rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
+        <i class="fas fa-receipt text-white text-sm sm:text-xl" aria-hidden="true"></i>
+      </div>
+      <span class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">
+        BillMate
+      </span>
+    </div>
+  </div>
+
+  <!-- Main navigation -->
+  <nav class="nav-section">
+    <div class="nav-group">
+      <div class="nav-group-title">MAIN MENU</div>
+      <ul class="nav-list">
+        <li *ngFor="let item of navItems" class="nav-item">
+          <a 
+            [class]="'nav-link ' + (isActive(item.route) ? 'active' : '')"
+            (click)="navigateTo(item.route)">
+            <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+            <span class="nav-label">{{ item.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Bottom navigation -->
+  <div class="bottom-nav">
+    <div class="nav-divider"></div>
+    <ul class="nav-list">
+      <li *ngFor="let item of bottomNavItems" class="nav-item">
+        <a 
+          [class]="'nav-link ' + (isActive(item.route) ? 'active' : '') + (item.label === 'Sign Out' ? ' sign-out' : '')"
+          (click)="navigateTo(item.route)">
+          <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+          <span class="nav-label">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,152 @@
+<div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen flex items-center justify-center  font-inter">
+  <div class="container-fluid registration-wrapper overflow-hidden">
+    <div class="row flex-md-row flex-column-reverse align-items-center justify-content-center min-vh-100">
+       <!-- Right Image Side -->
+      <div class="col-lg-6 d-flex justify-content-center p-3">
+        <app-pricing-carousel></app-pricing-carousel>
+      </div>
+      <div class="col-lg-6 d-flex justify-content-center align-items-start p-3 ">
+          <div class="cards w-80">
+            <div class="card shadow text-dark modern-card">
+              <div class="card-header modern-header">
+                <div class="row">
+                  <div class="col-md-10 d-flex align-items-center">
+                    <p class="fs-1 mb-0 modern-title">Organization LogIn</p>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="card-body modern-body">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    
+                  <!-- Email Field -->
+                  <div class="mb-4">
+                    <label for="email" class="form-label modern-label">Email*</label>
+                    <div class="position-relative">
+                      <input
+                        id="email"
+                        type="email"
+                        class="form-control modern-input ps-5"
+                        formControlName="email"
+                        placeholder="Enter your email address"
+                      />
+                      <i data-feather="mail" class="input-icon"></i>
+                    </div>
+                    <div *ngIf="loginForm.controls['email'].errors && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+                      <div *ngIf="loginForm.controls['email'].errors?.['required']" class="text-danger mt-1 error-text">
+                        <i data-feather="alert-circle" class="error-icon"></i>
+                        Please enter your email address.
+                      </div>
+                      <div *ngIf="loginForm.controls['email'].errors?.['email']" class="text-danger mt-1 error-text">
+                        <i data-feather="alert-circle" class="error-icon"></i>
+                        Enter a valid email address.
+                      </div>
+                    </div>
+                  </div>
+    
+                  <!-- Password Field -->
+                  <div class="mb-4">
+                    <label for="password" class="form-label modern-label">Password*</label>
+                    <div class="position-relative">
+                      <input
+                        id="password"
+                        [type]="showPassword ? 'text' : 'password'"
+                        class="form-control modern-input ps-5"
+                        formControlName="password"
+                        placeholder="Enter your password"
+                      />
+                      <i data-feather="lock" class="input-icon"></i>
+                      <button
+                        type="button"
+                        class="password-toggle-btn"
+                        (click)="togglePassword()"
+                        [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+                      >
+                        <i [attr.data-feather]="showPassword ? 'eye-off' : 'eye'" class="toggle-icon"></i>
+                      </button>
+                    </div>
+                    <div *ngIf="loginForm.controls['password'].dirty || loginForm.controls['password'].touched">
+                      <div *ngIf="loginForm.controls['password'].errors?.['required']" class="text-danger mt-1 error-text">
+                        <i data-feather="alert-circle" class="error-icon"></i>
+                        Please enter your password.
+                      </div>
+                      <div *ngIf="loginForm.controls['password'].errors?.['minlength']" class="text-danger mt-1 error-text">
+                        <i data-feather="alert-circle" class="error-icon"></i>
+                        Password must be at least 8 characters long.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Remember Me & Forgot Password -->
+                  <div class="form-options-modern mb-4">
+                    <div class="form-check-modern">
+                      <input class="form-check-input modern-checkbox" type="checkbox" id="rememberMe" formControlName="rememberMe">
+                      <label class="form-check-label modern-check-label" for="rememberMe">
+                        Remember me
+                      </label>
+                    </div>
+                    <!-- <a href="#" class="forgot-password-modern">Forgot password?</a> -->
+                  </div>
+    
+                  <!-- Submit Button -->
+                  <div class="d-grid gap-2 mb-3">
+                    <button 
+                      type="submit" 
+                      class="btn modern-submit-btn" 
+                      [disabled]="loginForm.invalid || isSubmitting"
+                      [class.loading]="isSubmitting"
+                    >
+                      <span *ngIf="!isSubmitting" class="btn-content">
+                        <i data-feather="log-in" class="btn-icon"></i>
+                        Sign In to Your Account
+                      </span>
+                      <span *ngIf="isSubmitting" class="btn-loading">
+                        <div class="spinner-modern"></div>
+                        Signing In...
+                      </span>
+                    </button>
+                  </div>
+    
+                  <!-- Success Message -->
+                  <div class="alert modern-success-alert fade-in" *ngIf="successMsg">
+                    <i data-feather="check-circle" class="alert-icon"></i>
+                    <span>{{ successMsg }}</span>
+                  </div>
+    
+                  <!-- Error Message -->
+                  <div class="alert modern-error-alert fade-in" *ngIf="errorMsg">
+                    <i data-feather="alert-triangle" class="alert-icon"></i>
+                    <span>{{ errorMsg || 'Invalid email or password. Please try again.' }}</span>
+                  </div>
+    
+                  <!-- Register Link -->
+                  <div class="mb-3 text-center signup-section">
+                    <span class="signup-text">Don't have an account?
+                      <a href="/signup" class="signup-link-modern">Create Account</a>
+                    </span>
+                  </div>
+    
+                </form>
+              </div>
+            </div>
+            <div class="mt-4 text-center large text-muted support-footer">
+              <hr class="modern-divider" />
+              <p class="mb-1 support-title">Need Help?</p>
+              <div class="support-links-modern">
+                <a href="/support" class="support-link-item">
+                  <i data-feather="help-circle" class="support-icon"></i>
+                  Contact Support
+                </a>
+                <a href="/docs" class="support-link-item">
+                  <i data-feather="book-open" class="support-icon"></i>
+                  Documentation
+                </a>
+              </div>
+            </div>
+            <div class="p-8">
+
+            </div>
+          </div>
+        </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.app-container {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    width: 200px;
+    background-color: rgb(var(--sidebar-bg));
+    border-right: none;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .content-area {
+    flex: 1;
+    overflow-y: auto;
+    background-color: rgb(var(--background));
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    .sidenav {
+      width: 180px;
+    }
+  }
+  
+
+  ::ng-deep .mat-drawer-backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  ::ng-deep .mat-drawer-container {
+    background-color: transparent;
+  }
+  

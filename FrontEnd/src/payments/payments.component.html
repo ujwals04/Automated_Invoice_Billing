@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <span class="display-5 mb-3 mt-3">Payments Overview</span>
+        </div>
+        <!-- <div class="col">
+            <button class="btn btn-success float-end mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#newCustomer">+ New Customer</button>
+        </div> -->
+        <hr>
+    </div>
+    <div class="row">
+        <div class="container mt-4">
+            <div class="card shadow-lg rounded">
+              <div class="card-body">
+                <!-- <h5 class="card-title text-center mb-4">Payments Overview</h5> -->
+          
+                <!-- Card-like Table Header (This is hidden on mobile) -->
+                <div class="d-none d-md-flex fw-bold text-secondary border-bottom pb-2 mb-3">
+                  <div class="col">Invoice ID</div>
+                  <div class="col">Remainder 1</div>
+                  <div class="col">Amount</div>
+                  <div class="col">Remainder 2</div>
+                  <div class="col">Amount</div>
+                  <div class="col">Remainder 3</div>
+                  <div class="col">Amount</div>
+                  <div class="col">Status</div>
+                </div>
+          
+                <!-- Scrollable Content Container -->
+                <div class="payments-container" style="max-height: 296px; overflow-y: auto;">
+                  <!-- Data Rows as Cards -->
+                  <div
+                    *ngFor="let payment of payments"
+                    class="d-flex flex-column flex-md-row align-items-start align-items-md-center border rounded shadow-sm mb-3 p-3 bg-white"
+                  >
+                    <div class="col"><strong class="d-md-none">Invoice ID:</strong> {{ payment.invoiceId }}</div>
+          
+                    <!-- Remainders and Amounts -->
+                    <div class="col">
+                      <strong class="d-md-none">Remainder 1:</strong> {{ payment.remainders[0] }}
+                    </div>
+                    <div class="col">
+                      <strong class="d-md-none">Amount:</strong> {{ payment.amounts[0] | currency }}
+                    </div>
+          
+                    <div class="col">
+                      <strong class="d-md-none">Remainder 2:</strong> {{ payment.remainders[1] }}
+                    </div>
+                    <div class="col">
+                      <strong class="d-md-none">Amount:</strong> {{ payment.amounts[1] | currency }}
+                    </div>
+          
+                    <div class="col">
+                      <strong class="d-md-none">Remainder 3:</strong> {{ payment.remainders[2] }}
+                    </div>
+                    <div class="col">
+                      <strong class="d-md-none">Amount:</strong> {{ payment.amounts[2] | currency }}
+                    </div>
+          
+                    <!-- Payment Status -->
+                    <div class="col">
+                      <span *ngIf="payment.received" class="text-success">
+                        <i class="bi bi-check-circle-fill"></i> Received
+                      </span>
+                      <span *ngIf="!payment.received" class="text-danger">
+                        <i class="bi bi-x-circle-fill"></i> Not Received
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                    
+    </div>
+</div>

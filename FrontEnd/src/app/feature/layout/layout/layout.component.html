@@ -1,0 +1,28 @@
+<div class="app-container">
+  <mat-sidenav-container class="sidenav-container">
+    <!-- Sidebar -->
+    <mat-sidenav 
+      #drawer 
+      class="sidenav"
+      [mode]="isHandset ? 'over' : 'side'"
+      [opened]="sidenavOpened"
+      (openedChange)="onSidenavToggle()"
+      fixedInViewport="true">
+      <app-navbar [currentRoute]="currentRoute"></app-navbar>
+    </mat-sidenav>
+
+    <!-- Main content area -->
+    <mat-sidenav-content class="main-content">
+      <!-- Top navigation bar -->
+      <app-topbar 
+        (menuToggle)="toggleSidenav()"
+        [showMenuButton]="isHandset">
+      </app-topbar>
+
+      <!-- Page content -->
+      <main class="content-area">
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

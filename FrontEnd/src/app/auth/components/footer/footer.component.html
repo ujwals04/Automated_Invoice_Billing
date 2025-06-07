@@ -1,0 +1,195 @@
+<footer class="footer-expand gradient-bg text-white relative overflow-hidden mt-auto"
+        [ngClass]="{'expanded': isExpanded}"
+        role="contentinfo">
+  <!-- Decorative Elements -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-dark/40" aria-hidden="true"></div>
+  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-light via-white to-primary-light opacity-30" aria-hidden="true"></div>
+  
+  <!-- Collapsed State Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 safe-area-inset">
+    <div class="text-center">
+      <button (click)="toggleExpanded()"
+              class="group focus-outline rounded-lg p-4 -m-4 transition-all duration-300 hover:bg-white/10"
+              type="button"
+              [attr.aria-expanded]="isExpanded"
+              aria-label="Toggle footer content">
+        <p class="text-base sm:text-lg font-medium text-white mb-2">
+          &copy; 2025 BillMate. All Rights Reserved.
+        </p>
+        <div class="flex items-center justify-center space-x-2 text-white/80">
+          <span class="text-sm sm:text-base">{{ isExpanded ? 'Click to collapse' : 'Click to explore more' }}</span>
+          <i class="fas transition-transform duration-300"
+             [ngClass]="isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"
+             aria-hidden="true"></i>
+        </div>
+      </button>
+    </div>
+
+    <!-- Expanded Content -->
+    <div class="footer-content-hidden mt-8 sm:mt-12"
+         [ngClass]="{'max-h-none opacity-100': isExpanded}"
+         [attr.aria-hidden]="!isExpanded">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+        
+        <!-- Company Info Section -->
+        <div class="space-y-6 animate-slide-up animate-delay-100">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 sm:w-12 h-10 sm:h-12 bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl flex items-center justify-center">
+              <i class="fas fa-receipt text-white text-lg sm:text-xl" aria-hidden="true"></i>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold">BillMate</h2>
+          </div>
+          <p class="text-white/90 leading-relaxed text-sm sm:text-base lg:text-lg">
+            Expert guidance tailored to your business needs,<br class="hidden sm:block"> 
+            driving growth and innovation through comprehensive solutions.
+          </p>
+          <div>
+            <p class="font-semibold text-white mb-4 text-sm sm:text-base">Connect With Us</p>
+            <div class="flex space-x-3 sm:space-x-4">
+              <button (click)="openLinkedIn()"
+                      class="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-110 focus-outline"
+                      type="button"
+                      aria-label="Visit our LinkedIn page">
+                <i class="fab fa-linkedin-in text-white" aria-hidden="true"></i>
+              </button>
+              <button (click)="openInstagram()"
+                      class="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-110 focus-outline"
+                      type="button"
+                      aria-label="Visit our Instagram page">
+                <i class="fab fa-instagram text-white" aria-hidden="true"></i>
+              </button>
+              <button (click)="openGitHub()"
+                      class="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-110 focus-outline"
+                      type="button"
+                      aria-label="Visit our GitHub page">
+                <i class="fab fa-github text-white" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="space-y-6 animate-slide-up animate-delay-200">
+          <h4 class="text-lg sm:text-xl font-semibold text-white">Explore</h4>
+          <nav class="space-y-3" role="navigation" aria-label="Footer navigation">
+            <button (click)="scrollToSection('#')"
+                    class="group flex items-center space-x-3 p-3 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-105 focus-outline w-full text-left"
+                    type="button">
+              <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-home text-white text-sm" aria-hidden="true"></i>
+              </div>
+              <span class="text-white font-medium text-sm sm:text-base">Home</span>
+            </button>
+            <button (click)="scrollToSection('#about')"
+                    class="group flex items-center space-x-3 p-3 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-105 focus-outline w-full text-left"
+                    type="button">
+              <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-info-circle text-white text-sm" aria-hidden="true"></i>
+              </div>
+              <span class="text-white font-medium text-sm sm:text-base">About Us</span>
+            </button>
+            <button (click)="scrollToSection('#features')"
+                    class="group flex items-center space-x-3 p-3 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-105 focus-outline w-full text-left"
+                    type="button">
+              <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-cog text-white text-sm" aria-hidden="true"></i>
+              </div>
+              <span class="text-white font-medium text-sm sm:text-base">Services</span>
+            </button>
+            <button (click)="scrollToSection('#contactus')"
+                    class="group flex items-center space-x-3 p-3 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-105 focus-outline w-full text-left"
+                    type="button">
+              <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-phone text-white text-sm" aria-hidden="true"></i>
+              </div>
+              <span class="text-white font-medium text-sm sm:text-base">Contact Us</span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="space-y-6 animate-slide-up animate-delay-300" id="contactus">
+          <h4 class="text-lg sm:text-xl font-semibold text-white">Get in Touch</h4>
+          <form class="space-y-4" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+            <!-- Name Field -->
+            <div>
+              <label for="footer-name" class="block text-sm font-medium text-white/90 mb-2">
+                Name *
+              </label>
+              <input 
+                type="text" 
+                id="footer-name" 
+                name="name"
+                [(ngModel)]="formData.name"
+                placeholder="Your full name" 
+                required
+                class="form-input w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-200"
+                [disabled]="isSubmitting || isSubmitted"
+              />
+            </div>
+
+            <!-- Email Field -->
+            <div>
+              <label for="footer-email" class="block text-sm font-medium text-white/90 mb-2">
+                Email *
+              </label>
+              <input 
+                type="email" 
+                id="footer-email" 
+                name="email"
+                [(ngModel)]="formData.email"
+                placeholder="you@example.com" 
+                required
+                class="form-input w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-200"
+                [disabled]="isSubmitting || isSubmitted"
+              />
+            </div>
+
+            <!-- Message Field -->
+            <div>
+              <label for="footer-message" class="block text-sm font-medium text-white/90 mb-2">
+                Message *
+              </label>
+              <textarea 
+                id="footer-message" 
+                name="message"
+                [(ngModel)]="formData.message"
+                rows="4" 
+                placeholder="How can we help?" 
+                required
+                class="form-input w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-200 resize-none"
+                [disabled]="isSubmitting || isSubmitted"
+              ></textarea>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="submitError" class="text-red-300 text-sm bg-red-500/20 border border-red-500/30 rounded-lg p-3">
+              <i class="fas fa-exclamation-triangle mr-2" aria-hidden="true"></i>
+              {{ submitError }}
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+              type="submit" 
+              [disabled]="isSubmitting || isSubmitted || !contactForm.form.valid"
+              class="w-full bg-white text-primary px-6 py-3 rounded-xl font-semibold hover:bg-white/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 disabled:opacity-75 disabled:cursor-not-allowed disabled:transform-none focus-outline"
+            >
+              <ng-container *ngIf="isSubmitting">
+                <i class="fas fa-spinner loading-spinner" aria-hidden="true"></i>
+                <span>Sending...</span>
+              </ng-container>
+              <ng-container *ngIf="isSubmitted && !isSubmitting">
+                <i class="fas fa-check text-green-600" aria-hidden="true"></i>
+                <span>Message Sent!</span>
+              </ng-container>
+              <ng-container *ngIf="!isSubmitting && !isSubmitted">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                <span>Send Message</span>
+              </ng-container>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

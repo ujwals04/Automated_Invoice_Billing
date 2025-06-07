@@ -1,0 +1,25 @@
+.footer-expand {
+    max-height: 6rem;
+    overflow: hidden;
+    transition: all 0.7s ease-out;
+  }
+  
+  .footer-expand:hover {
+    max-height: 100vh;
+  }
+  
+  .footer-content-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    transition-delay: 0.2s;
+  }
+  
+  .footer-expand:hover .footer-content-hidden {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, #16423c 0%, #047857 100%);
+  }

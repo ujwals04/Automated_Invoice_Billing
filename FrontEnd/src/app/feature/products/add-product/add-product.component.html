@@ -1,0 +1,100 @@
+<form [formGroup]="updateItemForm" (ngSubmit)="onUpdateSubmit()">
+    <!-- Item Name -->
+    <div class="mb-3">
+      <label class="form-label">Item Name</label>
+      <input class="form-control" formControlName="itemName" placeholder="Item Name" />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+    </div>
+
+    <!-- Type of Sale -->
+    <div class="mb-3">
+      <label class="form-label">Type of Sale</label>
+      <select class="form-select" formControlName="typeOfSale">
+        <option value="">Select</option>
+        <option value="permanent">Permanent</option>
+        <option value="rented">Rented</option>
+      </select>
+    </div>
+
+    <!-- Specifications -->
+    <div class="mb-3">
+      <label class="form-label">Specifications</label>
+      <div formArrayName="specifications">
+        <div *ngFor="let spec of updateSpecifications.controls; let i = index" class="input-group mb-2">
+          <input [formControlName]="i" type="text" class="form-control" placeholder="Specification" />
+          <button type="button" class="btn btn-danger" (click)="removeUpdateSpecification(i)" *ngIf="updateSpecifications.length > 1">-</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-success btn-sm" (click)="addUpdateSpecification()">+ Add</button>
+    </div>
+
+    <!-- Price -->
+    <div class="mb-3">
+      <label class="form-label">Price</label>
+      <input type="number" class="form-control" formControlName="price" placeholder="Price" />
+    </div>
+
+    <!-- Discount -->
+    <div class="mb-3">
+      <label class="form-label">Discount (%)</label>
+      <input type="number" class="form-control" formControlName="discountPercentage" placeholder="Discount %" />
+    </div>
+
+    <!-- Tax -->
+    <div class="mb-3">
+      <label class="form-label">Tax (%)</label>
+      <input type="number" class="form-control" formControlName="taxPercentage" placeholder="Tax %" />
+    </div>
+
+    <!-- Rent-specific fields -->
+    <div *ngIf="updateItemForm.get('typeOfSale')?.value === 'rented'">
+      <div class="mb-3">
+        <label class="form-label">Rent Type</label>
+        <select class="form-select" formControlName="rentType">
+          <option value="">Select</option>
+          <option value="hourly">Hourly</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Reminder Type</label>
+        <select class="form-select" formControlName="reminderType">
+          <option value="">Select</option>
+          <option value="hourly">Hourly</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Reminder Before</label>
+        <input type="number" class="form-control" formControlName="reminderBefore" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Limit of Reminders</label>
+        <input type="number" class="form-control" formControlName="limitOfReminders" />
+      </div>
+    </div>
+
+    <!-- Associated With -->
+    <div class="mb-3">
+      <label class="form-label">Associated With</label>
+      <input type="text" class="form-control" formControlName="associatedWith" readonly />
+    </div>
+
+    <!-- Submit -->
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+    </div>
+  </form>

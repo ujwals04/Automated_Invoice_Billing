@@ -1,0 +1,95 @@
+<div class="product-card">
+    <div class="card-inner">
+      <!-- Front of card -->
+      <div class="card-front">
+        <mat-card class="product-front-card">
+          <div class="card-image">
+            <img *ngIf="product.imageUrl; else defaultImage" 
+                 [src]="product.imageUrl" 
+                 [alt]="product.prodName"
+                 class="product-image">
+            <ng-template #defaultImage>
+              <div class="default-image">
+                <mat-icon>inventory_2</mat-icon>
+              </div>
+            </ng-template>
+          </div>
+          
+          <mat-card-header class="product-header">
+            <mat-card-title class="product-id">ID: {{ product.prodId }}</mat-card-title>
+            <mat-card-subtitle class="product-name">{{ product.prodName }}</mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content class="front-content">
+            <div class="price-stock">
+              <span class="price">{{ formatPrice(product.price) }}</span>
+              <mat-chip [color]="product.inStock ? 'primary' : 'warn'" 
+                        
+                       class="stock-chip">
+                {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+              </mat-chip>
+            </div>
+            
+            <p class="hover-hint">
+              <mat-icon>flip</mat-icon>
+              Hover to view details
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      
+      <!-- Back of card -->
+      <div class="card-back">
+        <mat-card class="product-back-card">
+          <mat-card-header>
+            <mat-card-title>{{ product.prodName }}</mat-card-title>
+            <mat-card-subtitle>{{ product.brand }} - {{ product.category }}</mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content class="back-content">
+            <div class="product-details">
+              <div class="detail-section">
+                <h4>Description</h4>
+                <p class="description">{{ product.description }}</p>
+              </div>
+              
+              <div class="detail-section" *ngIf="product.features && product.features.length > 0">
+                <h4>Features</h4>
+                <div class="features">
+                  <mat-chip *ngFor="let feature of product.features" class="feature-chip">
+                    {{ feature }}
+                  </mat-chip>
+                </div>
+              </div>
+              
+              <!-- <div class="detail-section" *ngIf="product.rating">
+                <h4>Rating</h4>
+                <div class="rating">
+                  <mat-icon *ngFor="let star of getRatingStars(product.rating)" 
+                           class="star-icon">{{ star }}</mat-icon>
+                  <span class="rating-value">({{ product.rating }}/5)</span>
+                </div>
+              </div> -->
+              
+              <div class="detail-section">
+                <h4>Added</h4>
+                <p class="date">{{ formatDate(product.createdDate) }}</p>
+              </div>
+            </div>
+          </mat-card-content>
+          
+          <mat-card-actions class="card-actions">
+            <button mat-button color="primary">
+              <mat-icon>edit</mat-icon>
+              Edit
+            </button>
+            <button mat-button color="warn" (click)="onDelete()">
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  

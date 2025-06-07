@@ -1,0 +1,13 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .card:hover {
+    transform: translateY(3px);
+  }
+
+
+.modal-header,
+.modal-footer {
+  border: none;
+}

@@ -1,0 +1,78 @@
+<div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen flex items-center justify-center p-4 font-inter">
+  <div class="w-full max-w-6xl mx-auto">
+    
+    <!-- 3D Carousel Container -->
+    <div 
+      class="relative w-full h-96 md:h-[500px]"
+      [style]="{'perspective': '1000px'}"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()">
+      
+      <div 
+        class="relative w-full h-full transition-transform duration-500 ease-in-out"
+        [style]="{'transform-style': 'preserve-3d'}">
+        
+        <div
+          *ngFor="let card of pricingCards; let i = index"
+          [attr.data-card-id]="card.id"
+          class="absolute inset-0 w-80 h-full mx-auto cursor-pointer transition-all duration-500 ease-in-out"
+          [ngStyle]="getCardStyles(i)"
+          (click)="goToCard(i)">
+          
+          <div 
+            class="rounded-2xl shadow-xl p-8 h-full flex flex-col justify-between relative overflow-hidden transition-shadow duration-300 hover:shadow-2xl"
+            [ngClass]="{
+              'bg-white border-2 border-blue-500': card.isPopular && isCenter(i),
+              'bg-white border border-slate-200': !(card.isPopular && isCenter(i))
+            }">
+            
+            
+            <!-- Icon and Title -->
+            <div class="text-center mb-6">
+              <div class="text-6xl mb-4">{{ card.emoji }}</div>
+              <h3 class="text-2xl font-semibold text-slate-800 mb-2">{{ card.title }}</h3>
+              <p class="text-slate-600">{{ card.description }}</p>
+            </div>
+            
+            <!-- Features -->
+            <div class="flex-1 mb-6">
+              <ul class="space-y-3 text-slate-600">
+                <li *ngFor="let feature of card.features" class="flex items-center">
+                  <span class="text-green-500 mr-2">✓</span>
+                  {{ feature }}
+                </li>
+              </ul>
+            </div>
+            
+            <!-- Price -->
+            <!-- <div class="text-center">
+              <div 
+                class="text-4xl font-bold mb-2"
+                [ngClass]="{
+                  'text-blue-600': card.isPopular && isCenter(i),
+                  'text-slate-800': !(card.isPopular && isCenter(i))
+                }">
+                {{ card.price }}
+                <span class="text-lg text-slate-500">{{ card.priceLabel }}</span>
+              </div>
+              <button 
+                class="w-full py-3 px-6 rounded-lg font-medium transition-colors"
+                [ngClass]="card.buttonStyle">
+                {{ card.buttonText }}
+              </button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-8"></div>
+    <div class="text-center mb-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+          Choose Your Perfect Plan
+        </h1>
+        <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+          Professional billing software designed to grow with your business. Start free, scale seamlessly.
+        </p>
+      </div>
+  </div>
+</div>

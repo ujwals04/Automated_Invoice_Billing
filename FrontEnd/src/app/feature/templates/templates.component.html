@@ -1,0 +1,65 @@
+<div class="template-selector">
+  <h2 class="section-title">Choose Invoice Template</h2>
+  
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Loading templates...</p>
+  </div>
+  
+  <div class="templates-grid" *ngIf="!loading">
+    <div 
+      class="template-card" 
+      *ngFor="let template of templates"
+      [class.selected]="isSelected(template)"
+      (click)="selectTemplate(template)"
+    >
+      <div class="template-preview" [style.border-color]="template.primaryColor">
+        <div class="preview-header" [style.background-color]="template.primaryColor">
+          <div class="preview-title">INVOICE</div>
+          <div class="preview-number">#001</div>
+        </div>
+        
+        <div class="preview-content" [style.background-color]="template.secondaryColor">
+          <div class="preview-section">
+            <div class="preview-label">From:</div>
+            <div class="preview-lines">
+              <div class="preview-line"></div>
+              <div class="preview-line short"></div>
+            </div>
+          </div>
+          
+          <div class="preview-section">
+            <div class="preview-label">To:</div>
+            <div class="preview-lines">
+              <div class="preview-line"></div>
+              <div class="preview-line short"></div>
+            </div>
+          </div>
+          
+          <div class="preview-table">
+            <div class="preview-table-header" [style.background-color]="template.primaryColor"></div>
+            <div class="preview-table-row"></div>
+            <div class="preview-table-row"></div>
+          </div>
+          
+          <div class="preview-total">
+            <div class="preview-total-line"></div>
+            <div class="preview-total-line bold" [style.color]="template.primaryColor"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="template-info">
+        <h3 class="template-name">{{ template.name }}</h3>
+        <p class="template-description">{{ template.description }}</p>
+        <div class="template-style">
+          <mat-chip [style.background-color]="template.primaryColor" [style.color]="'white'">
+            {{ template.style | titlecase }}
+          </mat-chip>
+        </div>
+      </div>
+      
+      <mat-icon class="selected-icon" *ngIf="isSelected(template)">check_circle</mat-icon>
+    </div>
+  </div>
+</div>

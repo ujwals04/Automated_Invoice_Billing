@@ -1,0 +1,81 @@
+const mongoose = require('mongoose');
+
+const invoiceItem={
+    itemName:{
+        type:String,
+        required:true,
+    },
+    quantity:{
+        type:Number,
+        required:true,
+    },
+    purchaseType:{
+        type:String,
+        required:true,
+    },
+    priceOfTheItem:{
+        type:Number,
+        required:true,
+    },
+    taxOfTheItem:{
+        type:Number,
+        required:true,
+    },
+    discountOfTheItem:{
+        type:Number,
+        required:true,
+    },
+    totalOfTheItem:{
+        type:Number,
+        required:true,
+    }
+}
+
+const invoiceSchema= new mongoose.Schema({
+    invoiceId:{
+        type:String,
+        required:true,
+        unique:true,
+    },
+    customerId:{
+        type:String,
+        required:true,
+    },
+    associatedWithId:{
+        type:String,
+        required:true,
+    },
+    purchaseTimeStamp:{
+        type:Date,
+        default:Date.now,
+    },
+    invoiceGenerationTimeStamp:{
+        type:Date,
+        default:Date.now,
+    },
+    dueTimeStamp:{
+        type:Date,
+        default:Date.now,
+    },
+    items:[
+        invoiceItem
+    ],
+    totalAmount:{
+        type:Number,
+        required:true,
+    },
+    totalTaxAmount:{
+        type:Number,
+        default:0,
+    },
+    totalDiscountAmount:{
+        type:Number,
+        default:0,
+    },
+    toBePaidAmount:{
+        type:Number,
+        required:true,
+    }
+},{timestamps:true});
+
+module.exports=invoiceSchema;

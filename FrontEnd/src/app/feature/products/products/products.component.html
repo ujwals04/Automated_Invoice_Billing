@@ -1,0 +1,39 @@
+<div class="products-container">
+    <mat-tab-group [(selectedIndex)]="selectedTabIndex" class="products-tabs">
+      <mat-tab label="View Products">
+        <div class="tab-content">
+          <div class="products-header">
+            <h2>Product Catalog</h2>
+            <p class="products-count">{{ products.length }} products available</p>
+          </div>
+          
+          <div class="products-grid" *ngIf="products.length > 0;">
+            <app-product-card
+              *ngFor="let product of products; trackBy: trackByProductId"
+              [product]="product"
+              (delete)="onProductDeleted($event)">
+            </app-product-card>
+          </div>
+          
+          <!-- <ng-template #emptyState>
+            <div class="empty-state">
+              <mat-icon class="empty-icon">inventory_2</mat-icon>
+              <h3>No Products Available</h3>
+              <p>Start by adding your first product to the catalog.</p>
+              <button mat-raised-button color="primary" (click)="selectedTabIndex = 1">
+                <mat-icon>add</mat-icon>
+                Add First Product
+              </button>
+            </div>
+          </ng-template> -->
+        </div>
+      </mat-tab>
+      
+      <mat-tab label="Add Product">
+        <div class="tab-content">
+          <app-add-product (productAdded)="onProductAdded()"></app-add-product>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  

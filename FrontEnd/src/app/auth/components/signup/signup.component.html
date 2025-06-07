@@ -1,0 +1,323 @@
+<div class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen flex items-center justify-center  font-inter">
+  <div class="container-fluid registration-wrapper overflow-hidden">
+    <div class="row flex-md-row flex-column-reverse align-items-center justify-content-center min-vh-100">
+      
+      <!-- Right Image Side -->
+      <div class="col-lg-6 d-flex justify-content-center p-3" style="height: 800px;">
+        <app-pricing-carousel></app-pricing-carousel>
+      </div>
+      
+      <!-- Left Form Side -->
+      <div class="col-md-6 d-flex align-items-start justify-content-center p-4">
+        <div class="w-100" style="max-width: 520px;">
+          <div class="card shadow-xl text-dark border-0 backdrop-blur-card">
+            
+            <!-- Header -->
+            <!-- <div class="card-header bg-gradient-header text-white">
+              <div class="d-flex align-items-center">
+                <div class="header-icon-wrapper me-3">
+                  <i class="feather-icon" data-feather="home"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <h1 class="mb-1 fw-bold fs-4">Organization Setup</h1>
+                  <p class="mb-0 text-light opacity-90 small">Complete your registration to get started</p>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- Card Body -->
+            <div class="card-body p-4">
+              <div class="welcome-section mb-4">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="feather-icon text-warning me-2" data-feather="star"></i>
+                  <h2 class="mb-0 fw-semibold fs-5">Welcome Aboard!</h2>
+                </div>
+                <p class="text-muted mb-0">Enter your organization details to get started with our premium platform</p>
+              </div>
+
+              <form [formGroup]="organizationForm" (ngSubmit)="onSubmit()">
+
+                <!-- Organization Name -->
+                <div class="mb-4 form-group-enhanced">
+                  <label for="orgName" class="form-label d-flex align-items-center mb-2">
+                    <i class="feather-icon text-primary me-2" data-feather="user"></i>
+                    <span class="fw-medium">Organization Name</span>
+                  </label>
+                  <div class="position-relative input-group-enhanced">
+                    <i class="feather-icon input-icon" data-feather="home"></i>
+                    <input 
+                      id="orgName" 
+                      type="text" 
+                      class="form-control form-control-enhanced ps-5"
+                      formControlName="orgName"
+                      [ngClass]="{'is-invalid': hasError('orgName')}"
+                      placeholder="Enter your organization name" />
+                  </div>
+                  <div *ngIf="hasError('orgName')" class="error-message d-flex align-items-center mt-2">
+                    <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                    <span>{{ getErrorMessage('orgName') }}</span>
+                  </div>
+                </div>
+
+                <!-- Industry -->
+                <div class="mb-4 form-group-enhanced">
+                  <label for="industry" class="form-label d-flex align-items-center mb-2">
+                    <i class="feather-icon text-primary me-2" data-feather="briefcase"></i>
+                    <span class="fw-medium">Industry Type</span>
+                  </label>
+                  <div class="position-relative select-group-enhanced">
+                    <i class="feather-icon input-icon" data-feather="briefcase"></i>
+                    <select 
+                      id="industry" 
+                      class="form-select form-control-enhanced ps-5" 
+                      formControlName="industry"
+                      [ngClass]="{'is-invalid': hasError('industry')}">
+                      <option value="">Select your industry</option>
+                      <option *ngFor="let industry of industries" [value]="industry">{{ industry }}</option>
+                    </select>
+                  </div>
+                  <div *ngIf="hasError('industry')" class="error-message d-flex align-items-center mt-2">
+                    <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                    <span>{{ getErrorMessage('industry') }}</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!-- Country -->
+                  <div class="mb-4 col-md-6 form-group-enhanced">
+                    <label for="country" class="form-label d-flex align-items-center mb-2">
+                      <i class="feather-icon text-primary me-2" data-feather="flag"></i>
+                      <span class="fw-medium">Country</span>
+                    </label>
+                    <div class="position-relative input-group-enhanced">
+                      <i class="feather-icon input-icon" data-feather="globe"></i>
+                      <input 
+                        list="countryList" 
+                        id="country" 
+                        class="form-control form-control-enhanced ps-5" 
+                        placeholder="Select country"
+                        formControlName="country"
+                        [ngClass]="{'is-invalid': hasError('country')}" />
+                      <datalist id="countryList">
+                        <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+                      </datalist>
+                    </div>
+                    <div *ngIf="hasError('country')" class="error-message d-flex align-items-center mt-2">
+                      <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                      <span>{{ getErrorMessage('country') }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Pincode -->
+                  <div class="mb-4 col-md-6 form-group-enhanced">
+                    <label for="pincode" class="form-label d-flex align-items-center mb-2">
+                      <i class="feather-icon text-primary me-2" data-feather="navigation"></i>
+                      <span class="fw-medium">Pin Code</span>
+                    </label>
+                    <div class="position-relative input-group-enhanced">
+                      <i class="feather-icon input-icon" data-feather="map-pin"></i>
+                      <input 
+                        id="pincode" 
+                        type="text" 
+                        class="form-control form-control-enhanced ps-5" 
+                        placeholder="6-digit code"
+                        formControlName="pincode"
+                        maxlength="6"
+                        [ngClass]="{'is-invalid': hasError('pincode')}" />
+                    </div>
+                    <div *ngIf="hasError('pincode')" class="error-message d-flex align-items-center mt-2">
+                      <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                      <span>{{ getErrorMessage('pincode') }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Address -->
+                <div class="mb-4 form-group-enhanced">
+                  <label for="address" class="form-label d-flex align-items-center mb-2">
+                    <i class="feather-icon text-primary me-2" data-feather="map"></i>
+                    <span class="fw-medium">Address</span>
+                  </label>
+                  <div class="position-relative input-group-enhanced">
+                    <i class="feather-icon input-icon" data-feather="map-pin"></i>
+                    <textarea 
+                      id="address" 
+                      class="form-control form-control-enhanced ps-5"
+                      formControlName="address"
+                      [ngClass]="{'is-invalid': hasError('address')}"
+                      placeholder="Enter your organization address"
+                      rows="3"></textarea>
+                  </div>
+                  <div *ngIf="hasError('address')" class="error-message d-flex align-items-center mt-2">
+                    <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                    <span>{{ getErrorMessage('address') }}</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!-- Email -->
+                  <div class="mb-4 col-md-6 form-group-enhanced">
+                    <label for="email" class="form-label d-flex align-items-center mb-2">
+                      <i class="feather-icon text-primary me-2" data-feather="at-sign"></i>
+                      <span class="fw-medium">Email</span>
+                    </label>
+                    <div class="position-relative input-group-enhanced">
+                      <i class="feather-icon input-icon" data-feather="mail"></i>
+                      <input 
+                        id="email" 
+                        type="email" 
+                        class="form-control form-control-enhanced ps-5" 
+                        placeholder="Email address"
+                        formControlName="email"
+                        [ngClass]="{'is-invalid': hasError('email')}" />
+                    </div>
+                    <div *ngIf="hasError('email')" class="error-message d-flex align-items-center mt-2">
+                      <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                      <span>{{ getErrorMessage('email') }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="mb-4 col-md-6 form-group-enhanced">
+                    <label for="phone" class="form-label d-flex align-items-center mb-2">
+                      <i class="feather-icon text-primary me-2" data-feather="smartphone"></i>
+                      <span class="fw-medium">Contact Number</span>
+                    </label>
+                    <div class="position-relative input-group-enhanced">
+                      <i class="feather-icon input-icon" data-feather="phone"></i>
+                      <input 
+                        id="phone" 
+                        type="tel" 
+                        class="form-control form-control-enhanced ps-5" 
+                        placeholder="Contact number"
+                        formControlName="phone"
+                        maxlength="10"
+                        [ngClass]="{'is-invalid': hasError('phone')}" />
+                    </div>
+                    <div *ngIf="hasError('phone')" class="error-message d-flex align-items-center mt-2">
+                      <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                      <span>{{ getErrorMessage('phone') }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!-- Password -->
+                  <div class="mb-4 col-md-6 form-group-enhanced">
+                    <label for="pwd" class="form-label d-flex align-items-center mb-2">
+                      <i class="feather-icon text-primary me-2" data-feather="shield"></i>
+                      <span class="fw-medium">Password</span>
+                    </label>
+                    <div class="position-relative input-group-enhanced">
+                      <i class="feather-icon input-icon" data-feather="lock"></i>
+                      <input 
+                        id="pwd" 
+                        [type]="showPassword ? 'text' : 'password'" 
+                        class="form-control form-control-enhanced ps-5 pe-5" 
+                        placeholder="Password"
+                        formControlName="pwd"
+                        [ngClass]="{'is-invalid': hasError('pwd')}" />
+                      <button 
+                        type="button"
+                        (click)="togglePasswordVisibility('password')"
+                        class="btn btn-link position-absolute password-toggle"
+                        style="top: 50%; right: 8px; transform: translateY(-50%); padding: 0; border: none; background: none;">
+                        <i class="feather-icon" [attr.data-feather]="showPassword ? 'eye-off' : 'eye'"></i>
+                      </button>
+                    </div>
+                    <div *ngIf="hasError('pwd')" class="mt-2">
+                      <div *ngIf="organizationForm.get('pwd')?.hasError('required')" class="error-message d-flex align-items-center">
+                        <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                        <span>Password is required.</span>
+                      </div>
+                      <div *ngIf="organizationForm.get('pwd')?.hasError('pattern')" class="password-requirements mt-2">
+                        <div *ngFor="let req of getPasswordRequirements()" 
+                             class="d-flex align-items-center small mb-1"
+                             [ngClass]="{'text-success': req.met, 'text-danger': !req.met}">
+                          <i class="feather-icon me-1" 
+                             [attr.data-feather]="req.met ? 'check-circle' : 'x-circle'"
+                             style="width: 12px; height: 12px;"></i>
+                          <span>{{ req.text }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="mb-4 col-md-6 form-group-enhanced">
+                    <label for="confirmPwd" class="form-label d-flex align-items-center mb-2">
+                      <i class="feather-icon text-primary me-2" data-feather="check-circle"></i>
+                      <span class="fw-medium">Confirm Password</span>
+                    </label>
+                    <div class="position-relative input-group-enhanced">
+                      <i class="feather-icon input-icon" data-feather="lock"></i>
+                      <input 
+                        id="confirmPwd" 
+                        [type]="showConfirmPassword ? 'text' : 'password'" 
+                        class="form-control form-control-enhanced ps-5 pe-5" 
+                        placeholder="Confirm Password"
+                        formControlName="confirmPwd"
+                        [ngClass]="{'is-invalid': hasError('confirmPwd')}" />
+                      <button 
+                        type="button"
+                        (click)="togglePasswordVisibility('confirmPassword')"
+                        class="btn btn-link position-absolute password-toggle"
+                        style="top: 50%; right: 8px; transform: translateY(-50%); padding: 0; border: none; background: none;">
+                        <i class="feather-icon" [attr.data-feather]="showConfirmPassword ? 'eye-off' : 'eye'"></i>
+                      </button>
+                    </div>
+                    <div *ngIf="hasError('confirmPwd')" class="error-message d-flex align-items-center mt-2">
+                      <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                      <span>{{ getErrorMessage('confirmPwd') }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="mb-4 form-check-enhanced">
+                  <div class="d-flex align-items-start">
+                    <input 
+                      type="checkbox" 
+                      class="form-check-input me-3 mt-1" 
+                      id="terms"
+                      formControlName="terms"
+                      [ngClass]="{'is-invalid': hasError('terms')}">
+                    <label class="form-check-label flex-grow-1" for="terms">
+                      <span class="d-flex align-items-center">
+                        <i class="feather-icon text-primary me-2" data-feather="file-text"></i>
+                        <span>I agree to the 
+                          <a href="#" class="text-primary text-decoration-none fw-medium">Terms and Conditions</a> 
+                          and 
+                          <a href="#" class="text-primary text-decoration-none fw-medium">Privacy Policy</a>
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                  <div *ngIf="hasError('terms')" class="error-message d-flex align-items-center mt-2 ms-4">
+                    <i class="feather-icon text-danger me-1" data-feather="alert-circle" style="width: 14px; height: 14px;"></i>
+                    <span>You must accept the terms and conditions</span>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                  <button 
+                    type="submit" 
+                    class="btn btn-primary-enhanced btn-lg"
+                    [disabled]="isSubmitting">
+                    <span class="d-flex align-items-center justify-content-center" style="color: white;">Create Organization
+                      <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                      <i *ngIf="!isSubmitting" class="feather-icon me-2" data-feather="arrow-right"></i>
+                      <span>{{ isSubmitting ? 'Creating Organization...' : '' }}</span>
+                    </span>
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
